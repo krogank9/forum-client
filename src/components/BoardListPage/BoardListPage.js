@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import "./BoardListPage.css"
+
 import Board from './Board/Board';
 
 class BoardListPage extends Component {
@@ -15,7 +17,7 @@ class BoardListPage extends Component {
     return (
       <section>
         <h2>Boards</h2>
-        <ul>
+        <ul className="board-list">
           {boards}
         </ul>
       </section>

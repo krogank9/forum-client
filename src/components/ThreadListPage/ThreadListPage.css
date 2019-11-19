@@ -1,0 +1,31 @@
+.thread-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.thread-list .forum-thread-name {
+  background-color: #ffffff;
+  width: auto;
+  text-align: left;
+}
+
+.thread-list .forum-thread-info {
+  background-color: #eeeeee;
+  width: 150px;
+}
+
+.thread-list li {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: normal;
+  margin-bottom: 2px;
+}
+
+.thread-list li > div {
+  display: table-row;
+}
+
+.thread-list li > div > * {
+  display: table-cell;
+}

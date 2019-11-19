@@ -1,0 +1,24 @@
+.forum-post-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.forum-post-list .forum-post-user {
+  background-color: #eeeeee;
+  width: 100px;
+  float: left;
+}
+
+.forum-post-list .forum-post-user img {
+  width: 60px;
+  height: auto;
+}
+
+.forum-post-list .forum-post-content {
+  margin-left: 100px;
+  background-color: #ffffff;
+}
+
+.forum-post-clear {
+  clear: both;
+}

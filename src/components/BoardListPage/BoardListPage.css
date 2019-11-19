@@ -1,0 +1,10 @@
+.board-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.board-list li {
+  text-align: left;
+  margin-bottom: 2px;
+  background-color: #ffffff;
+}

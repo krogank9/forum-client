@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import "./ViewThreadPage.css";
+
 import Post from "./Post/Post";
 
 class ViewThreadPage extends Component {
@@ -13,13 +15,33 @@ class ViewThreadPage extends Component {
     ].map((p, i) => <Post user={p[0]} content={p[1]} key={i} />)
 
     return (
-      <section>
-        <h2>Thread Title</h2>
+      <>
+        <header>
+          <h1>Thread Title</h1>
+        </header>
 
-        <ul>
-          {posts}
-        </ul>
-      </section>
+        <section>
+
+          <ul className="forum-post-list">
+            {posts}
+          </ul>
+          
+        </section>
+
+        <section>
+
+          <h2>Reply to Thread</h2>
+
+          <form>
+            <textarea></textarea>
+
+            <br />
+
+            <input type="submit" value="Reply" />
+          </form>
+
+        </section>
+      </>
     );
   }
 }

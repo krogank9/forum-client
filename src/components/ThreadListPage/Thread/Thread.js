@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 
+import { Link } from "react-router-dom";
+
 class Thread extends Component {
   render() {
     return (
       <li>
         <div>
-          <div class="forum-post-content">
-            {this.props.name}
+          <div class="forum-thread-name">
+            <Link to="/boards/aaa/123">{this.props.name}</Link>
 
             <br />
 
             <small>{this.props.user}, {this.props.date}</small>
           </div>
-          <div class="forum-post-user">
+          <div class="forum-thread-info">
             Replies: {this.props.replies}
             <br />
             Views: {this.props.views}

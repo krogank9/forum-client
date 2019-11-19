@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import "./ThreadListPage.css";
+
 import { Link } from 'react-router-dom';
 
 import Thread from './Thread/Thread';
@@ -18,11 +20,11 @@ class ThreadListPage extends Component {
       <section>
         <h2>Threads</h2>
 
-        <ul>
+        <Link to={ "/boards/" + this.props.match.params.boardName  + "/create_thread" }>Create Thread</Link>
+
+        <ul className="thread-list">
           {threads}
         </ul>
-
-        <Link to={ "/boards/" + this.props.match.params.boardName  + "/create_thread" }>Create Thread</Link>
       </section>
     );
   }

@@ -15,9 +15,12 @@ class Thread extends Component {
             <small>{this.props.user}, {this.props.date}</small>
           </div>
           <div class="forum-thread-info">
-            Replies: {this.props.replies}
-            <br />
-            Views: {this.props.views}
+            <span>
+              Replies: {this.props.replies}
+            </span>
+            <span>
+              Views: {this.props.views}
+            </span>
           </div>
         </div>
       </li>

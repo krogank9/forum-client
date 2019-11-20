@@ -14,7 +14,15 @@ class Post extends Component {
             </div>
         </div>
           <div class="forum-post-content">
-            {this.props.content}
+            <div class="forum-post-header">
+              Date Posted: {this.props.datePosted}
+              <span class="forum-post-num">
+                #{this.props.postNum}
+              </span>
+            </div>
+            <div>
+              {this.props.content}
+            </div>
         </div>
           <div class="forum-post-clear"></div>
         </div>

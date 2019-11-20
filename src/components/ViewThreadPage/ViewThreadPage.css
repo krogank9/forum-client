@@ -3,6 +3,19 @@
   padding-left: 0;
 }
 
+.forum-post-list li {
+  margin-bottom: 3px;
+}
+
+.forum-post-header {
+  padding: 0 10px;
+  text-align: left;
+}
+
+.forum-post-num {
+  float: right;
+}
+
 .forum-post-list .forum-post-user {
   background-color: #eeeeee;
   width: 100px;

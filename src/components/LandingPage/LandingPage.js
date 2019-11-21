@@ -7,7 +7,7 @@ class LandingPage extends Component {
     return (
       <div>
         <h1>Welcome to my forum</h1>
-        <Link to="/boards">View boards</Link>
+        <p>Click the "View boards" button above to start browsing the various categories and topics.</p>
       </div>
     );
   }

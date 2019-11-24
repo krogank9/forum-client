@@ -21,8 +21,9 @@ const ForumApiService = {
   },
   refresh(authToken) {
     return fetch(`${config.API_ENDPOINT}/auth/refresh`, {
+      method: 'POST',
       headers: {
-        'Bearer': authToken
+        'Authorization': `Bearer ${authToken}`
       },
     })
       .then(res =>
@@ -66,12 +67,12 @@ const ForumApiService = {
           : res.json()
       )
   },
-  postThread(authToken, name, boardId, firstPostContent) {
+  postThread(authToken, boardId, name, firstPostContent) {
     return fetch(`${config.API_ENDPOINT}/threads`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'Bearer': authToken
+        'Authorization': `Bearer ${authToken}`
       },
       body: JSON.stringify({
         name: name,
@@ -90,7 +91,7 @@ const ForumApiService = {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
-        'Bearer': authToken
+        'Authorization': `Bearer ${authToken}`
       },
     })
       .then(res =>
@@ -116,7 +117,7 @@ const ForumApiService = {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'Bearer': authToken
+        'Authorization': `Bearer ${authToken}`
       },
       body: JSON.stringify({
         thread_id: threadId,
@@ -134,7 +135,7 @@ const ForumApiService = {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
-        'Bearer': authToken
+        'Authorization': `Bearer ${authToken}`
       },
     })
       .then(res =>

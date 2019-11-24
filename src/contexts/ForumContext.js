@@ -2,7 +2,8 @@ import React from 'react'
 
 const ForumContext = React.createContext({
     loggedInUser: null,
-    "userLoggedIn": () => {},
+    "onUserLoggedIn": () => {},
+    "onUserLogout": () => {},
 })
 
 export default ForumContext

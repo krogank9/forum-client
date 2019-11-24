@@ -25,7 +25,12 @@ class App extends React.Component {
     }
   }
 
-  userLoggedIn = (authToken, userName, userId) => {
+  onUserLogout = (authToken, userName, userId) => {
+    TokenService.clearAuthToken();
+    this.setState({loggedInUser: null});
+  }
+
+  onUserLoggedIn = (authToken, userName, userId) => {
     TokenService.saveAuthToken(authToken)
     this.setState({
       loggedInUser: {userName: userName, id: userId}
@@ -34,9 +39,10 @@ class App extends React.Component {
 
   tryRefreshLogin = () => {
     let authToken = TokenService.getAuthToken();
+    console.log(authToken)
     if(authToken && authToken.length > 0) {
       ForumApiService.refresh(authToken).then(json => {
-        this.userLoggedIn(json.authToken, json.userName, json.userId)
+        this.onUserLoggedIn(json.authToken, json.userName, json.userId)
       })
     }
   }
@@ -48,7 +54,8 @@ class App extends React.Component {
   render() {
     let contextValue = {
       ...(this.state),
-      "userLoggedIn": this.userLoggedIn
+      "onUserLoggedIn": this.onUserLoggedIn,
+      "onUserLogout": this.onUserLogout
     };
     return (
       <ForumContext.Provider value={contextValue}>

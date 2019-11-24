@@ -7,14 +7,14 @@ class Thread extends Component {
     return (
       <li>
         <div>
-          <div class="forum-thread-name">
+          <div className="forum-thread-name">
             <Link to={`/boards/${this.props.match.params.boardName}/${this.props.linkName}.${this.props.threadId}`}>{this.props.name}</Link>
 
             <br />
 
             <small>{this.props.user}, {this.props.date}</small>
           </div>
-          <div class="forum-thread-info">
+          <div className="forum-thread-info">
             <span>
               Replies: {this.props.replies}
             </span>

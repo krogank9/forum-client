@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ForumContext from '../../contexts/ForumContext.js';
+import TokenService from '../../services/token-service'
 
 import { Link } from "react-router-dom";
 
@@ -15,6 +16,10 @@ class NavBar extends React.Component {
     }
   }
 
+  logoutUser = () => {
+    this.context.onUserLogout();
+  }
+
   render() {
     return (
       <ForumContext.Consumer>
@@ -23,7 +28,7 @@ class NavBar extends React.Component {
             <Link to="/boards">View boards</Link>
             <br />
             {loggedInUser ?
-              <span>Logged in as {this.state.loggedInUser.user_name}</span>
+              <span>Logged in as {loggedInUser.userName} <Link to="#" onClick={this.logoutUser}>Logout</Link> </span>
               :
               <Link to="/login">Log In</Link>
             }

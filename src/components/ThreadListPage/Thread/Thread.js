@@ -8,7 +8,7 @@ class Thread extends Component {
       <li>
         <div>
           <div class="forum-thread-name">
-            <Link to="/boards/aaa/123">{this.props.name}</Link>
+            <Link to={`/boards/${this.props.match.params.boardName}/${this.props.linkName}.${this.props.threadId}`}>{this.props.name}</Link>
 
             <br />
 

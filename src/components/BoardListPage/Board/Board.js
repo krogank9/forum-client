@@ -7,7 +7,7 @@ class Board extends Component {
     return (
       <li>
         <div>
-          <Link to="/boards/test">{this.props.name}</Link>
+          <Link to={`/boards/${this.props.name.toLowerCase()}.${this.props.boardId}`}>{this.props.name}</Link>
         </div>
         <div>
           <small>Discussions: {this.props.threadCount}</small>

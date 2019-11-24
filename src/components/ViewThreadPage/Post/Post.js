@@ -7,16 +7,16 @@ class Post extends Component {
     return (
       <li>
         <div>
-          <div class="forum-post-user">
+          <div className="forum-post-user">
             <img src={`${process.env.PUBLIC_URL}/assets/user-icon.png`} />
             <div>
               {this.props.user}
             </div>
         </div>
-          <div class="forum-post-content">
-            <div class="forum-post-header">
+          <div className="forum-post-content">
+            <div className="forum-post-header">
               Date Posted: {this.props.datePosted}
-              <span class="forum-post-num">
+              <span className="forum-post-num">
                 #{this.props.postNum}
               </span>
             </div>
@@ -24,7 +24,7 @@ class Post extends Component {
               {this.props.content}
             </div>
         </div>
-          <div class="forum-post-clear"></div>
+          <div className="forum-post-clear"></div>
         </div>
       </li>
     );

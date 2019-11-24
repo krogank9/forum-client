@@ -1,26 +1,61 @@
 import React, { Component } from 'react';
 
+import ForumApiService from '../../services/forum-api-service';
+
 import "./ViewThreadPage.css";
 
 import Post from "./Post/Post";
+import ForumContext from '../../contexts/ForumContext';
 
 class ViewThreadPage extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      posts: [],
+      threadName: "",
+      error: false
+    }
+  }
+
+  componentDidMount() {
+    let threadName = this.props.match.params.threadName.split(".");
+    let threadId = parseInt(threadName.pop());
+
+    ForumApiService.getThreadInfo(threadId).then(json => {
+      this.setState({threadName: json.name})
+    })
+
+    ForumApiService.getPostsInThread(threadId)
+      .then(json => {
+        this.setState({posts: json});
+      })
+      .catch(e => {
+        this.setState({error: true});
+      })
+  }
+
   render() {
-    let posts = [
-      ["Logan", "Hey guys what's up? Here's my first post.", "10/9/2019 10AM"],
-      ["Sam", "Nice weather we're having.", "10/15/2019 11AM"],
-      ["Maggie", "Hi everyone", "10/17/2018 12PM"],
-      ["Sam", "Hi Maggie", "10/20/2018 1PM"],
-      ["Logan", "Hello", "10/21/2018 4PM"],
-    ].map((p, i) => <Post user={p[0]} content={p[1]} key={i} postNum={i+1} datePosted={p[2]} />)
+
+    console.log(this.state.posts)
+    let posts = this.state.posts.map((p, i) => (
+      <Post
+        user={p.author_id}
+        content={p.content}
+        key={i}
+        postNum={i+1}
+        datePosted={p.date_created} />
+    ))
 
     return (
       <>
         <header>
-          <h1>Thread Title</h1>
+          <h1>{this.state.threadName}</h1>
         </header>
 
         <section>
+
+        {this.state.error? <div>Error loading posts. Please try again later.</div> :false}
 
           <ul className="forum-post-list">
             {posts}

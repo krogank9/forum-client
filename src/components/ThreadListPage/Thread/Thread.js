@@ -18,9 +18,9 @@ class Thread extends Component {
             <span>
               Replies: {this.props.replies}
             </span>
-            <span>
+            {false && <span>
               Views: {this.props.views}
-            </span>
+            </span>}
           </div>
         </div>
       </li>

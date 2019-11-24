@@ -45,9 +45,9 @@ class ThreadListPage extends Component {
       <Thread
         name={t.name}
         linkName={Utils.normalizeThreadName(t.name)}
-        user={t.author_id}
+        user={t.author_name}
         date={t.date_created}
-        replies={0}
+        replies={t.reply_count}
         views={0}
         threadId={t.id}
         match={this.props.match}

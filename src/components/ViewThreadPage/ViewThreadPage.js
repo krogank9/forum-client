@@ -65,7 +65,7 @@ class ViewThreadPage extends Component {
 
     let posts = this.state.posts.map((p, i) => (
       <Post
-        user={p.author_id}
+        user={p.author_name}
         content={p.content}
         key={i}
         postNum={i+1}

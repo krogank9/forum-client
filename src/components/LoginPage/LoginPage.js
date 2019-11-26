@@ -40,7 +40,7 @@ class LoginPage extends Component {
       })
       .catch(e => {
         console.log(e)
-        alert(`Error creating account`)
+        alert(`Error creating account: ${e.error}`)
       })
   }
 

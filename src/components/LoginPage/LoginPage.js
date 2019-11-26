@@ -28,7 +28,7 @@ class LoginPage extends Component {
       })
       .catch(e => {
         console.log(e)
-        alert(`Error logging in`)
+        alert(`Error logging in: ${e.error}`)
       })
   }
 

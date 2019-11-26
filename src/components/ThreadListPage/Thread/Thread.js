@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Link } from "react-router-dom";
 
+import Utils from "../../utils";
+
 class Thread extends Component {
   render() {
     return (
@@ -12,7 +14,7 @@ class Thread extends Component {
 
             <br />
 
-            <small>{this.props.user}, {new Date(this.props.date).toLocaleString()}</small>
+            <small>{this.props.user}, {Utils.dateToHumanReadable(this.props.date)}</small>
           </div>
           <div className="forum-thread-info">
             <span>

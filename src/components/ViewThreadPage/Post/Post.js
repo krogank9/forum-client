@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import "./Post.css";
 
+import Utils from "../../../utils";
+
 class Post extends Component {
   render() {
     return (

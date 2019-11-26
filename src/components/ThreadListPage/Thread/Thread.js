@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Link } from "react-router-dom";
 
-import Utils from "../../utils";
+import Utils from "../../../utils";
 
 class Thread extends Component {
   render() {

@@ -15,7 +15,7 @@ class Post extends Component {
         </div>
           <div className="forum-post-content">
             <div className="forum-post-header">
-              Date Posted: {this.props.datePosted}
+              Date Posted: {new Date(this.props.datePosted).toLocaleString()}
               <span className="forum-post-num">
                 #{this.props.postNum}
               </span>

@@ -12,7 +12,7 @@ class Thread extends Component {
 
             <br />
 
-            <small>{this.props.user}, {this.props.date}</small>
+            <small>{this.props.user}, {new Date(this.props.date).toLocaleString()}</small>
           </div>
           <div className="forum-thread-info">
             <span>

@@ -30,7 +30,9 @@ class NavBar extends React.Component {
             {loggedInUser ?
               <span>Logged in as {loggedInUser.userName} <Link to="#" onClick={this.logoutUser}>Logout</Link> </span>
               :
-              <Link to="/login">Log In</Link>
+              <>
+                <Link to="/login">Log In</Link> / <Link to="/create-account">Create Account</Link>
+              </>
             }
           </nav>
         )}

@@ -4,15 +4,18 @@ import { withRouter } from "react-router-dom";
 import ForumApiService from '../../services/forum-api-service';
 import ForumContext from '../../contexts/ForumContext';
 
-class LoginPage extends Component {
+import ProfilePictureChooser from './ProfilePictureChooser/ProfilePictureChooser';
+
+class CreateAccountPage extends Component {
   static contextType = ForumContext
 
   constructor() {
     super();
-    
+
     this.state = {
       userName: "",
-      password: ""
+      password: "",
+      profilePicture: 1
     }
   }
 
@@ -20,28 +23,26 @@ class LoginPage extends Component {
     evt.preventDefault();
     const data = new FormData(evt.target);
 
-    ForumApiService.login(this.state.userName, this.state.password)
+    ForumApiService.registerUser(this.state.userName, this.state.password, this.state.profilePicture)
       .then(json => {
         console.log(json)
-        this.context.onUserLoggedIn(json.authToken, json.userName, json.userId)
-        this.props.history.goBack()
-      })
-      .catch(e => {
-        console.log(e)
-        alert(`Error logging in: ${e.error}`)
-      })
-  }
-
-  handleCreateAccount = (evt) => {
-    ForumApiService.registerUser(this.state.userName, this.state.password)
-      .then(json => {
-        console.log(json)
-        alert("Account created successfuly")
+        //alert("Account created successfuly")
+        ForumApiService.login(this.state.userName, this.state.password)
+          .then(json => {
+            console.log(json)
+            this.context.onUserLoggedIn(json.authToken, json.userName, json.userId)
+            this.props.history.goBack()
+          })
+          .catch(e => {
+            console.log(e)
+            alert(`Error logging in to newly created account: ${e.error}`)
+          })
       })
       .catch(e => {
         console.log(e)
         alert(`Error creating account: ${e.error}`)
       })
+
   }
 
   updateFormState = (evt) => {
@@ -50,11 +51,15 @@ class LoginPage extends Component {
     this.setState({ [name]: evt.target.value })
   }
 
+  updateProPic = (proPicInfo) => {
+    this.setState({ profilePicture: proPicInfo.picNumber })
+  }
+
   render() {
     return (
       <section>
         <h2>
-          Login
+          Create Account
         </h2>
 
         <form onSubmit={this.handleSubmit}>
@@ -68,11 +73,16 @@ class LoginPage extends Component {
 
           <br />
 
-          <input type="submit" value="Log In" />
+          Choose Your Profile Picture:
+          <ProfilePictureChooser name="profilePicture" onChange={this.updateProPic}></ProfilePictureChooser>
+
+          <br />
+
+          <input type="submit" value="Create Account" />
         </form>
       </section>
     );
   }
 }
 
-export default withRouter(LoginPage);
+export default withRouter(CreateAccountPage);

@@ -18,22 +18,26 @@ class ViewThreadPage extends Component {
     this.state = {
       posts: [],
       threadName: "",
+      replyContent: "",
+      replyFocused: false,
       threadId: 0,
       error: false
     }
+
+    this.replyTextareaRef = React.createRef();
   }
 
   handleSubmitPostForm = (evt) => {
     evt.preventDefault();
     let data = new FormData(evt.target);
 
-    if(this.context.loggedInUser && this.state.threadId !== 0) {
+    if (this.context.loggedInUser && this.state.threadId !== 0) {
       ForumApiService.postInThread(TokenService.getAuthToken(), this.state.threadId, data.get('content'))
         .then(json => {
           this.refreshPosts();
         })
     }
-    else if(!this.context.loggedInUser) {
+    else if (!this.context.loggedInUser) {
       alert("Please log in to post");
     }
     else {
@@ -41,13 +45,25 @@ class ViewThreadPage extends Component {
     }
   }
 
+  replyContentChanged = (evt) => {
+    this.setState({ replyContent: evt.target.value })
+  }
+
+  replyPostClicked = (post) => {
+    const postQuote = `[QUOTE name=${post.author} postNumber=${post.numberInThread}]${post.content}[/QUOTE]`;
+    const hasNewline = this.state.replyContent.trim() === "" || this.state.replyContent.endsWith("\n") ? "" : "\n"
+    const newReplyContent = `${this.state.replyContent}${hasNewline}${postQuote}\n`
+    this.setState({replyContent: newReplyContent})
+    this.replyTextareaRef.current.focus()
+  }
+
   refreshPosts = () => {
     ForumApiService.getPostsInThread(this.state.threadId)
       .then(json => {
-        this.setState({posts: json});
+        this.setState({ posts: json });
       })
       .catch(e => {
-        this.setState({error: true});
+        this.setState({ error: true });
       })
   }
 
@@ -56,7 +72,7 @@ class ViewThreadPage extends Component {
     let threadId = parseInt(threadName.pop());
 
     ForumApiService.getThreadInfo(threadId).then(json => {
-      this.setState({threadName: json.name, threadId: json.id})
+      this.setState({ threadName: json.name, threadId: json.id })
       this.refreshPosts();
     })
   }
@@ -68,8 +84,10 @@ class ViewThreadPage extends Component {
         user={p.author_name}
         content={p.content}
         key={i}
-        postNum={i+1}
-        datePosted={p.date_created} />
+        postNum={i + 1}
+        profilePicture={p.author_picture}
+        datePosted={p.date_created}
+        onReply={this.replyPostClicked} />
     ))
 
     return (
@@ -80,12 +98,12 @@ class ViewThreadPage extends Component {
 
         <section>
 
-        {this.state.error? <div>Error loading posts. Please try again later.</div> :false}
+          {this.state.error ? <div>Error loading posts. Please try again later.</div> : false}
 
           <ul className="forum-post-list">
             {posts}
           </ul>
-          
+
         </section>
 
         <section>
@@ -93,7 +111,7 @@ class ViewThreadPage extends Component {
           <h2>Reply to Thread</h2>
 
           <form onSubmit={this.handleSubmitPostForm}>
-            <textarea name="content"></textarea>
+            <textarea name="content" onChange={this.replyContentChanged} value={this.state.replyContent} ref={this.replyTextareaRef}></textarea>
 
             <br />
 

@@ -8,7 +8,19 @@
 }
 
 .forum-post-header {
-  padding: 0 10px;
+  text-align: left;
+  background-color: #F4F4F4;
+}
+.forum-post-footer {
+  text-align: right;
+}
+
+.forum-post-content {
+  padding: 10px;
+}
+
+.forum-post-text {
+  padding: 4px 0px;
   text-align: left;
 }
 

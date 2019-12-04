@@ -27,6 +27,10 @@ class MakeThreadPage extends Component {
         .then(json => {
           this.props.history.push(`/boards/${boardName}/${Utils.normalizeThreadName(json.name)}.${json.id}`)
         })
+        .catch(e => {
+          console.log(e)
+          alert(`Error creating thread: ${e.error}`)
+        })
     }
     else if (!this.context.loggedInUser) {
       alert("Please log in to post");

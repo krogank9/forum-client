@@ -12,6 +12,7 @@ import ForumApiService from '../../services/forum-api-service';
 import NavBar from '../NavBar/NavBar';
 import BoardListPage from '../BoardListPage/BoardListPage';
 import LoginPage from '../LoginPage/LoginPage';
+import CreateAccountPage from '../CreateAccountPage/CreateAccountPage';
 import LandingPage from '../LandingPage/LandingPage';
 import CreateThreadPage from '../CreateThreadPage/CreateThreadPage';
 import ThreadListPage from '../ThreadListPage/ThreadListPage';
@@ -68,6 +69,7 @@ class App extends React.Component {
             <Route exact path="/boards/:boardName/create_thread" component={CreateThreadPage} />
             <Route exact path="/boards/:boardName/:threadName/:pageNum?" component={ViewThreadPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/create-account" component={CreateAccountPage} />
             <Route component={LandingPage} />
           </Switch>
         </div>

@@ -145,7 +145,7 @@ const ForumApiService = {
       )
   },
   // Users
-  registerUser(user_name, password) {
+  registerUser(user_name, password, profile_picture) {
     return fetch(`${config.API_ENDPOINT}/users`, {
       method: 'POST',
       headers: {
@@ -153,7 +153,8 @@ const ForumApiService = {
       },
       body: JSON.stringify({
         user_name: user_name,
-        password: password
+        password: password,
+        profile_picture: profile_picture
       }),
     })
       .then(res =>

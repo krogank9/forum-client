@@ -1,6 +1,6 @@
 export default {
-  normalizeThreadName: (name) => {
-    return name.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\s+/g, '-').toLowerCase();
+  normalizeName: (name) => {
+    return name.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\-/g, ' ').replace(/\s+/g, '-').toLowerCase();
   },
   dateToHumanReadable: (date) => {
     const rawDate = date
@@ -33,4 +33,18 @@ export default {
       return date.toLocaleString(navigator.language, { month: 'short', day: 'numeric', year: 'numeric' })
     }
   },
+  updateBoardURL: (historyProp,boardName,boardId) => {
+    const newLocation = `/boards/${boardName}.${boardId}`
+    if(newLocation !== window.location.pathname) {
+      //window.location = newLocation
+      historyProp.push(newLocation)
+    }
+  },
+  setThreadURL: (historyProp,threadName,threadId) => {
+    const newLocation = `/threads/${threadName}.${threadId}`
+    if(newLocation !== window.location.pathname) {
+      //window.location = newLocation
+      historyProp.push(newLocation)
+    }
+  }
 }

@@ -44,6 +44,17 @@ const ForumApiService = {
           : res.json()
       )
   },
+  getBoardById(id) {
+    return fetch(`${config.API_ENDPOINT}/boards/${id}`, {
+      headers: {
+      },
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
   // Threads
   getThreadInfo(threadId) {
     return fetch(`${config.API_ENDPOINT}/threads/${threadId}`, {

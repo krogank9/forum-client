@@ -67,7 +67,7 @@ class App extends React.Component {
             <Route exact path="/boards" component={BoardListPage} />
             <Route exact path="/boards/:boardName" component={ThreadListPage} />
             <Route exact path="/boards/:boardName/create_thread" component={CreateThreadPage} />
-            <Route exact path="/boards/:boardName/:threadName/:pageNum?" component={ViewThreadPage} />
+            <Route exact path="/threads/:threadName/:pageNum?" component={ViewThreadPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/create-account" component={CreateAccountPage} />
             <Route component={LandingPage} />

@@ -12,14 +12,15 @@ class BoardListPage extends Component {
 
     this.state = {
       boards: [],
-      error: false
+      loaded: false,
+      error: null
     }
   }
 
   componentDidMount() {
     ForumApiService.getBoards()
       .then(json => {
-        this.setState({boards: json});
+        this.setState({boards: json, loaded: true});
       })
       .catch(e => {
         this.setState({error: true});
@@ -29,13 +30,22 @@ class BoardListPage extends Component {
   render() {
     let boards = this.state.boards.map((b, i) => <Board name={b.name} threadCount={b.threadCount} boardId={b.id} key={i} />)
 
+    let content = false
+    if(this.state.error) {
+      content = <div>Could not load boards. Please try again later.</div>
+    }
+    else if(!this.state.loaded) {
+      content = <div>Loading...</div>
+    }
+    else { // loaded
+      content = <ul className="board-list">{boards}</ul>
+    }
+
     return (
       <section>
         <h2>Boards</h2>
-        {this.state.error? <div>Error loading boards. Please try again later.</div> :false}
-        <ul className="board-list">
-          {boards}
-        </ul>
+
+        {content}
       </section>
     );
   }

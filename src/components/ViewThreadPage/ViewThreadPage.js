@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
 import ForumApiService from '../../services/forum-api-service';
 import TokenService from '../../services/token-service';
@@ -8,6 +9,8 @@ import ForumContext from '../../contexts/ForumContext'
 import "./ViewThreadPage.css";
 
 import Post from "./Post/Post";
+
+import Utils from "../../utils";
 
 class ViewThreadPage extends Component {
   static contextType = ForumContext
@@ -21,7 +24,9 @@ class ViewThreadPage extends Component {
       replyContent: "",
       replyFocused: false,
       threadId: 0,
-      error: false
+      notFoundError: false,
+      fetchError: false,
+      loaded: false
     }
 
     this.replyTextareaRef = React.createRef();
@@ -53,17 +58,17 @@ class ViewThreadPage extends Component {
     const postQuote = `[QUOTE name=${post.author} postNumber=${post.numberInThread}]${post.content}[/QUOTE]`;
     const hasNewline = this.state.replyContent.trim() === "" || this.state.replyContent.endsWith("\n") ? "" : "\n"
     const newReplyContent = `${this.state.replyContent}${hasNewline}${postQuote}\n`
-    this.setState({replyContent: newReplyContent})
+    this.setState({ replyContent: newReplyContent })
     this.replyTextareaRef.current.focus()
   }
 
   refreshPosts = () => {
     ForumApiService.getPostsInThread(this.state.threadId)
       .then(json => {
-        this.setState({ posts: json });
+        this.setState({ posts: json, loaded: true });
       })
       .catch(e => {
-        this.setState({ error: true });
+        this.setState({ fetchError: true });
       })
   }
 
@@ -71,10 +76,18 @@ class ViewThreadPage extends Component {
     let threadName = this.props.match.params.threadName.split(".");
     let threadId = parseInt(threadName.pop());
 
-    ForumApiService.getThreadInfo(threadId).then(json => {
-      this.setState({ threadName: json.name, threadId: json.id })
-      this.refreshPosts();
-    })
+    ForumApiService.getThreadInfo(threadId)
+      .then(json => {
+        Utils.setThreadURL(this.props.history, Utils.normalizeName(json.name), json.id)
+
+        this.setState({ threadName: json.name, threadId: json.id })
+        this.refreshPosts();
+      })
+      .catch(e => {
+        console.log(e)
+        const notFound = e.error && e.error.message.indexOf("doesn't exist") >= 0;
+        this.setState({ notFoundError: notFound, fetchError: !notFound });
+      })
   }
 
   render() {
@@ -90,6 +103,20 @@ class ViewThreadPage extends Component {
         onReply={this.replyPostClicked} />
     ))
 
+    let content = false
+    if (this.state.fetchError) {
+      content = <div>Error connecting to the server. Please try again later.</div>
+    }
+    else if (this.state.notFoundError) {
+      content = <div>Thread not found. 404</div>
+    }
+    else if (!this.state.loaded) {
+      content = <div>Loading...</div>
+    }
+    else { // loaded
+      content = <ul className="forum-post-list">{posts}</ul>
+    }
+
     return (
       <>
         <header>
@@ -97,31 +124,27 @@ class ViewThreadPage extends Component {
         </header>
 
         <section>
-
-          {this.state.error ? <div>Error loading posts. Please try again later.</div> : false}
-
-          <ul className="forum-post-list">
-            {posts}
-          </ul>
-
+          {content}
         </section>
 
-        <section>
+        {!this.state.loaded ? false :
+          <section>
 
-          <h2>Reply to Thread</h2>
+            <h2>Reply to Thread</h2>
 
-          <form onSubmit={this.handleSubmitPostForm}>
-            <textarea name="content" onChange={this.replyContentChanged} value={this.state.replyContent} ref={this.replyTextareaRef}></textarea>
+            <form onSubmit={this.handleSubmitPostForm}>
+              <textarea name="content" onChange={this.replyContentChanged} value={this.state.replyContent} ref={this.replyTextareaRef}></textarea>
 
-            <br />
+              <br />
 
-            <input type="submit" value="Reply" />
-          </form>
+              <input type="submit" value="Reply" />
+            </form>
 
-        </section>
+          </section>
+        }
       </>
     );
   }
 }
 
-export default ViewThreadPage;
+export default withRouter(ViewThreadPage);

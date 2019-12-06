@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 
+import './LoginPage.css'
+
 import ForumApiService from '../../services/forum-api-service';
 import ForumContext from '../../contexts/ForumContext';
 
@@ -9,16 +11,16 @@ class LoginPage extends Component {
 
   constructor() {
     super();
-    
+
     this.state = {
       userName: "",
-      password: ""
+      password: "",
+      errorMessage: ""
     }
   }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const data = new FormData(evt.target);
 
     ForumApiService.login(this.state.userName, this.state.password)
       .then(json => {
@@ -28,19 +30,9 @@ class LoginPage extends Component {
       })
       .catch(e => {
         console.log(e)
-        alert(`Error logging in: ${e.error}`)
-      })
-  }
-
-  handleCreateAccount = (evt) => {
-    ForumApiService.registerUser(this.state.userName, this.state.password)
-      .then(json => {
-        console.log(json)
-        alert("Account created successfuly")
-      })
-      .catch(e => {
-        console.log(e)
-        alert(`Error creating account: ${e.error}`)
+        const errorMessage = e.error
+        this.setState({errorMessage})
+        //alert(`Error logging in: ${e.error}`)
       })
   }
 
@@ -58,13 +50,15 @@ class LoginPage extends Component {
         </h2>
 
         <form onSubmit={this.handleSubmit}>
+          <div className="form-error">{this.state.errorMessage}</div>
+
           Username:
-          <input type="text" name="userName" onChange={this.updateFormState} />
+          <input type="text" name="userName" onChange={this.updateFormState} required />
 
           <br />
 
           Password:
-          <input type="password" name="password" onChange={this.updateFormState} />
+          <input type="password" name="password" onChange={this.updateFormState} required />
 
           <br />
 

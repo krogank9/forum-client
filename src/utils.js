@@ -1,17 +1,14 @@
 export default {
   normalizeName: (name) => {
-    return name.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\-/g, ' ').replace(/\s+/g, '-').toLowerCase();
+    return name.replace(/[^a-zA-Z0-9 -]/g, '').replace(/-/g, ' ').replace(/\s+/g, '-').toLowerCase();
   },
   dateToHumanReadable: (date) => {
-    const rawDate = date
     date = new Date(`${date} UTC`)
     let curDate = new Date()
     let dateDiff = curDate - date
     let oneMin = 1000 * 60
     let sixtyMins = 1000 * 60 * 60
     let oneWeek = sixtyMins * 24 * 7
-
-    //return rawDate
 
     // if < 1 minute ago: show just now
     if (dateDiff < oneMin) {

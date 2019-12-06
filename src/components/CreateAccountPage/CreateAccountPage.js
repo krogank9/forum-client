@@ -15,13 +15,13 @@ class CreateAccountPage extends Component {
     this.state = {
       userName: "",
       password: "",
-      profilePicture: 1
+      profilePicture: 1,
+      errorMessage: ""
     }
   }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    const data = new FormData(evt.target);
 
     ForumApiService.registerUser(this.state.userName, this.state.password, this.state.profilePicture)
       .then(json => {
@@ -34,13 +34,11 @@ class CreateAccountPage extends Component {
             this.props.history.goBack()
           })
           .catch(e => {
-            console.log(e)
-            alert(`Error logging in to newly created account: ${e.error}`)
+            this.setState({errorMessage: e.error})
           })
       })
       .catch(e => {
-        console.log(e)
-        alert(`Error creating account: ${e.error}`)
+        this.setState({errorMessage: e.error})
       })
 
   }
@@ -63,13 +61,15 @@ class CreateAccountPage extends Component {
         </h2>
 
         <form onSubmit={this.handleSubmit}>
+          <div className="form-error">{this.state.errorMessage}</div>
+
           Username:
-          <input type="text" name="userName" onChange={this.updateFormState} />
+          <input type="text" name="userName" onChange={this.updateFormState} required />
 
           <br />
 
           Password:
-          <input type="password" name="password" onChange={this.updateFormState} />
+          <input type="password" name="password" onChange={this.updateFormState} required />
 
           <br />
 

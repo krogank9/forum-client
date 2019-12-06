@@ -13,6 +13,10 @@ class MakeThreadPage extends Component {
 
   constructor() {
     super();
+
+    this.state = {
+      errorMessage: ""
+    }
   }
 
   handleForm = (evt) => {
@@ -22,21 +26,17 @@ class MakeThreadPage extends Component {
     let boardName = this.props.match.params.boardName;
     let boardId = parseInt(boardName.split(".").pop());
 
-    if (this.context.loggedInUser && boardId !== 0) {
+    if (this.context.loggedInUser) {
       ForumApiService.postThread(TokenService.getAuthToken(), boardId, data.get('subject'), data.get('content'))
         .then(json => {
           this.props.history.push(`/boards/${boardName}/${Utils.normalizeThreadName(json.name)}.${json.id}`)
         })
         .catch(e => {
-          console.log(e)
-          alert(`Error creating thread: ${e.error}`)
+          this.setState({errorMessage: e.error})
         })
     }
-    else if (!this.context.loggedInUser) {
-      alert("Please log in to post");
-    }
     else {
-      alert("Error");
+      this.setState({errorMessage: "Please log in to post"})
     }
   }
 
@@ -46,13 +46,15 @@ class MakeThreadPage extends Component {
         <h2>Create Thread</h2>
 
         <form onSubmit={this.handleForm}>
+          <div className="form-error">{this.state.errorMessage}</div>
+
           <span>Subject:</span>
-          <input type="text" name="subject" />
+          <input type="text" name="subject" required />
 
           <br />
 
           <span>Content:</span>
-          <textarea name="content"></textarea>
+          <textarea name="content" required></textarea>
 
           <br />
 

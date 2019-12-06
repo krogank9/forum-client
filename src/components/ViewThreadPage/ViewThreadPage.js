@@ -26,6 +26,7 @@ class ViewThreadPage extends Component {
       threadId: 0,
       notFoundError: false,
       fetchError: false,
+      postErrorMessage: "",
       loaded: false
     }
 
@@ -36,17 +37,17 @@ class ViewThreadPage extends Component {
     evt.preventDefault();
     let data = new FormData(evt.target);
 
-    if (this.context.loggedInUser && this.state.threadId !== 0) {
+    if (this.context.loggedInUser) {
       ForumApiService.postInThread(TokenService.getAuthToken(), this.state.threadId, data.get('content'))
         .then(json => {
           this.refreshPosts();
         })
-    }
-    else if (!this.context.loggedInUser) {
-      alert("Please log in to post");
+        .catch(e => {
+          this.setState({postErrorMessage: e.error})
+        })
     }
     else {
-      alert("Error");
+      this.setState({postErrorMessage: "Please log in to post"});
     }
   }
 
@@ -133,7 +134,9 @@ class ViewThreadPage extends Component {
             <h2>Reply to Thread</h2>
 
             <form onSubmit={this.handleSubmitPostForm}>
-              <textarea name="content" onChange={this.replyContentChanged} value={this.state.replyContent} ref={this.replyTextareaRef}></textarea>
+              <div className="form-error">{this.state.postErrorMessage}</div>
+
+              <textarea name="content" onChange={this.replyContentChanged} value={this.state.replyContent} ref={this.replyTextareaRef} required></textarea>
 
               <br />
 

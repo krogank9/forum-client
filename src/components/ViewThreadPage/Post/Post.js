@@ -13,7 +13,6 @@ import Utils from "../../../utils";
 
 const preset = createPreset({
   quote: (node) => {
-    console.log(node.attrs)
     return ({
       tag: 'div',
       attrs: {},

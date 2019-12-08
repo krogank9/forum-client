@@ -6,9 +6,6 @@ import { createPreset } from '@bbob/preset'
 
 // render: <p><strong>strong</strong></p>
 
-
-import "./Post.css";
-
 import Utils from "../../../utils";
 
 const preset = createPreset({

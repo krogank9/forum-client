@@ -1,9 +1,13 @@
+// moment js for better date parsing browser compatibility
+const moment = require('moment');
+
 export default {
   normalizeName: (name) => {
     return name.replace(/[^a-zA-Z0-9 -]/g, '').replace(/-/g, ' ').replace(/\s+/g, '-').toLowerCase();
   },
   dateToHumanReadable: (date) => {
-    date = new Date(`${date} UTC`)
+    date = new Date(moment.utc(`${date}`).format())
+
     let curDate = new Date()
     let dateDiff = curDate - date
     let oneMin = 1000 * 60

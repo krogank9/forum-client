@@ -52,12 +52,12 @@ class LoginPage extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-error">{this.state.errorMessage}</div>
 
-          Username:
+          Username: &nbsp;
           <input type="text" name="userName" onChange={this.updateFormState} required />
 
           <br />
 
-          Password:
+          Password: &nbsp;
           <input type="password" name="password" onChange={this.updateFormState} required />
 
           <br />

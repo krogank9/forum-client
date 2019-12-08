@@ -1,15 +1,11 @@
-nav {
-  background-color: #EEE;
-  color: black;
-  height: 80px;
-}
-
-nav a, nav a:hover {
+.nav-header a, .nav-header a:hover {
   color: black;
   text-decoration: none;
 }
 
-nav {
+.nav-header {
+  background-color: #EEE;
+  height: 80px;
   display: flex;
   flex-direction: row;
   padding: 0 20px;
@@ -39,19 +35,19 @@ nav {
   color: white;
 }
 
-.nav-button-light {
+.nav-header .nav-button-light {
   border:  1px solid #0079D3;
   border-radius: 4px;
   color: #0079D3;
   padding: 7px 20px;
   white-space: nowrap;
 }
-.nav-button-light:hover {
+.nav-header .nav-button-light:hover {
   border:  1px solid #7FBCE9;
   color: #7FBCE9;
 }
 
-nav > div > span {
+.nav-header > div > span {
   height: 80px;
   display: table-cell;
   vertical-align: middle;
@@ -60,4 +56,30 @@ nav > div > span {
 
 .nav-button-padding-right-md {
   padding-right: 14px;
+}
+
+.menu-icon {
+  height: 30px;
+  width: auto;
+}
+
+/*----*/
+
+.nav-dropdown-menu {
+  background-color: white;
+}
+
+.nav-dropdown-menu > * {
+  display: block;
+  padding: 4px;
+  background: #eee;
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .nav-header .nav-desktop-only { display: none; }
+}
+@media screen and (min-width: 600px) {
+  .nav-dropdown-menu { display: none; }
+  .nav-header .nav-dropdown-button { display: none; }
 }

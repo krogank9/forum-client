@@ -40,6 +40,7 @@ class ViewThreadPage extends Component {
     if (this.context.loggedInUser) {
       ForumApiService.postInThread(TokenService.getAuthToken(), this.state.threadId, data.get('content'))
         .then(json => {
+          this.setState({replyContent: ""})
           this.refreshPosts();
         })
         .catch(e => {
@@ -132,14 +133,14 @@ class ViewThreadPage extends Component {
 
             <h3>Reply to Thread</h3>
 
-            <form onSubmit={this.handleSubmitPostForm}>
+            <form onSubmit={this.handleSubmitPostForm} className="make-post-forum">
               <div className="form-error">{this.state.postErrorMessage}</div>
 
               <textarea name="content" onChange={this.replyContentChanged} value={this.state.replyContent} ref={this.replyTextareaRef} required></textarea>
 
               <br />
 
-              <input type="submit" value="Reply" />
+              <input type="submit" value="Post Reply" />
             </form>
 
           </div>

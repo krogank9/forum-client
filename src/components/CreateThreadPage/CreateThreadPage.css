@@ -1,0 +1,16 @@
+.create-thread-page h2 {
+  border-bottom: 1px solid black;
+  margin: 0 50px;
+}
+
+.create-thread-form {
+  padding: 50px;
+}
+
+.create-thread-form input[type=text] {
+  width: 85%;
+}
+.create-thread-form textarea {
+  width: 85%;
+  height: 200px;
+}

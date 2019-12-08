@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import ForumApiService from '../../../services/forum-api-service';
 import ForumContext from '../../../contexts/ForumContext';
@@ -23,8 +23,12 @@ class ProfilePictureChooser extends Component {
 
     let add = evt.target.name === "prev" ? -1 : 1
     let newNum = this.state.picNumber + add
-    newNum = newNum % 10
-    newNum = Math.max(newNum, 1)
+    if(newNum > 9) {
+      newNum = 1
+    }
+    else if(newNum < 1) {
+      newNum = 9
+    }
 
     console.log(`add: ${add}, newNum: ${newNum}`)
 
@@ -43,9 +47,12 @@ class ProfilePictureChooser extends Component {
   render() {
     return (
       <div>
-        <button name="prev" onClick={this.changeProPic}>&lt;</button>
         <img src={this.state.curPic}></img>
-        <button name="next" onClick={this.changeProPic}>&gt;</button>
+        <div>
+          <Link name="prev" to="#" onClick={this.changeProPic} className="title-link-light">&lt; Prev</Link>
+          &nbsp;/&nbsp;
+          <Link name="next" to="#" onClick={this.changeProPic} className="title-link-light">Next &gt;</Link>
+        </div>
       </div>
     );
   }

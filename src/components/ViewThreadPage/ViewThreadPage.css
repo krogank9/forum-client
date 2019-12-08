@@ -99,3 +99,8 @@
   color: #004D97;
   text-decoration: none;
 }
+
+.make-post-forum textarea {
+  width: 90%;
+  height: 150px;
+}

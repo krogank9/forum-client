@@ -8,6 +8,8 @@ import ForumContext from '../../contexts/ForumContext'
 
 import Utils from "../../utils";
 
+import "./CreateThreadPage.css";
+
 class MakeThreadPage extends Component {
   static contextType = ForumContext
 
@@ -42,24 +44,26 @@ class MakeThreadPage extends Component {
 
   render() {
     return (
-      <section>
+      <section className="create-thread-page">
         <h2>Create Thread</h2>
 
-        <form onSubmit={this.handleForm}>
+        <form onSubmit={this.handleForm} className="create-thread-form">
           <div className="form-error">{this.state.errorMessage}</div>
 
           <span>Subject:</span>
+          <br />
           <input type="text" name="subject" required />
 
           <br />
+          <br />
 
           <span>Content:</span>
+          <br />
           <textarea name="content" required></textarea>
 
           <br />
 
-          {false && <input type="submit" value="Cancel" />}
-          <input type="submit" />
+          <input type="submit" value="Post Thread" />
         </form>
       </section>
     );

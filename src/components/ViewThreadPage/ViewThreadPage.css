@@ -104,3 +104,26 @@
   width: 90%;
   height: 150px;
 }
+
+@media screen and (max-width: 600px) {
+  .forum-post-list .forum-post-user {
+    display: block;
+    width: 100%;
+    float: unset;
+  }
+
+  .forum-post-list .forum-post-content {
+    display: block;
+    margin-left: 0px;
+    padding: 0;
+  }
+
+  .forum-post-list .forum-post-text {
+    margin-top: 5px;
+  }
+
+  .forum-post-header {
+    display: block;
+    width: 100%;
+  }
+}

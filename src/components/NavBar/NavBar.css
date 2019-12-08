@@ -11,12 +11,17 @@
   padding: 0 20px;
 }
 
+.nav-logo-link {
+  outline: 0;
+  border: 0;
+}
 .nav-logo {
   width: auto;
   height: 70px;
   margin: 5px 0;
   display: block;
   outline: none;
+  border: 0;
 }
 
 .nav-expand {

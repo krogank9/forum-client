@@ -31,7 +31,7 @@ class NavBar extends React.Component {
             <div className="nav-header">
 
               <div>
-                <Link to="/">
+                <Link to="/" className="nav-log-link">
                   <img className="nav-logo" src={`${process.env.PUBLIC_URL}/assets/logo_small.svg`} alt="Home"></img>
                 </Link>
               </div>

@@ -126,4 +126,8 @@
     display: block;
     width: 100%;
   }
+
+  .forum-post-num {
+    display: none;
+  }
 }

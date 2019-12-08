@@ -7,10 +7,10 @@ import Utils from "../../../utils";
 class Thread extends Component {
   render() {
     return (
-      <li>
+      <li className="thread-li">
         <div>
           <div className="forum-thread-name">
-            <Link to={`/threads/${this.props.linkName}.${this.props.threadId}`}>{this.props.name}</Link>
+            <Link to={`/threads/${this.props.linkName}.${this.props.threadId}`} className="title-link">{this.props.name}</Link>
 
             <br />
 

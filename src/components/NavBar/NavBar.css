@@ -1,0 +1,63 @@
+nav {
+  background-color: #EEE;
+  color: black;
+  height: 80px;
+}
+
+nav a, nav a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  width: auto;
+  height: 70px;
+  margin: 5px 0;
+  display: block;
+  outline: none;
+}
+
+.nav-expand {
+  flex: 1;
+}
+
+.nav-button {
+  background-color: #0079D3;
+  border-radius: 4px;
+  color: white;
+  padding: 7px 20px;
+  white-space: nowrap;
+}
+.nav-button:hover {
+  background-color: #7FBCE9;
+  color: white;
+}
+
+.nav-button-light {
+  border:  1px solid #0079D3;
+  border-radius: 4px;
+  color: #0079D3;
+  padding: 7px 20px;
+  white-space: nowrap;
+}
+.nav-button-light:hover {
+  border:  1px solid #7FBCE9;
+  color: #7FBCE9;
+}
+
+nav > div > span {
+  height: 80px;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 8px;
+}
+
+.nav-button-padding-right-md {
+  padding-right: 14px;
+}

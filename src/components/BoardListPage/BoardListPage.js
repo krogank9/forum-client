@@ -42,7 +42,7 @@ class BoardListPage extends Component {
     }
 
     return (
-      <section>
+      <section className="boards-list-section">
         <h2>Boards</h2>
 
         {content}

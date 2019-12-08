@@ -15,11 +15,11 @@ const preset = createPreset({
   quote: (node) => {
     return ({
       tag: 'div',
-      attrs: {},
+      attrs: {className: "post-quote"},
       content: [
         {
           tag: 'div',
-          attrs: {},
+          attrs: {className: "post-quote-header"},
           content: [
             {
               tag: 'span',
@@ -35,7 +35,7 @@ const preset = createPreset({
         },
         {
           tag: 'div',
-          attrs: {},
+          attrs: {className: "post-quote-body"},
           content: node.content,
         }
       ],
@@ -52,25 +52,14 @@ class Post extends Component {
     })
   }
 
-  formatPost(text) {
-    // change all double newlines to doubels <br>s
-    // change all newlines to <brs> (don't allow more than 2 <br>s in a row)
-    text = text.split("\n\n").join("<br><br>")
-    text = text.split("\n").join("<br>")
-    //return text
-
-    // parse bbcode
-    var html = 0//BBParser.parseString(text);
-
-    return html
-  }
-
   render() {
     //<img src={`${process.env.PUBLIC_URL}/assets/user-icon.png`} />
     const proPic = Math.max(Math.abs(parseInt(this.props.profilePicture)) % 10, 1)
     return (
       <li>
-        <div>
+        <div className="post-top-spacer">
+        </div>
+        <div className="forum-post-container">
           <div className="forum-post-user">
             <img src={`${process.env.PUBLIC_URL}/assets/profile-pictures/${proPic}.svg`} />
             <div>

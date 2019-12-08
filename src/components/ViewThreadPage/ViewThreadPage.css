@@ -10,13 +10,16 @@
 .forum-post-header {
   text-align: left;
   background-color: #F4F4F4;
+  padding-left: 15px;
+  padding-right: 6px;
 }
 .forum-post-footer {
   text-align: right;
 }
 
 .forum-post-content {
-  padding: 10px;
+  padding-left: 12px;
+  padding-bottom: 12px;
 }
 
 .forum-post-text {
@@ -46,4 +49,53 @@
 
 .forum-post-clear {
   clear: both;
+}
+
+/*-----*/
+
+.view-thread-page {
+  margin: 14px;
+  padding: 20px;
+  box-shadow: 1px 1px 14px rgba(0,0,0,0.6);
+}
+
+.view-thread-page h2 {
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.post-top-spacer {
+  background-color: #E8E8E8;
+  border-bottom: 1px dotted black;
+  margin-bottom: 15px;
+  height: 24px;
+}
+
+.forum-post-container {
+  padding-bottom: 25px;
+}
+
+.post-quote {
+  background-color: #FFF7ED;
+  border: 1px solid rgb(137, 167, 186);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+.post-quote-header {
+  background-color: #FFF1E1;
+  padding: 4px 10px;
+  font-size: 80%;
+}
+.post-quote-body {
+  padding: 10px 15px;
+}
+.post-quote-header a {
+  text-decoration: none;
+  color: #004D97;
+  margin: 0px 3px;
+}
+.post-quote-header a:hover {
+  color: #004D97;
+  text-decoration: none;
 }

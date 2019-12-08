@@ -47,3 +47,21 @@
     width: 150px;
   }
 }
+
+/*----*/
+
+.thread-list-section {
+  margin: 14px;
+  padding: 20px;
+  box-shadow: 1px 1px 14px rgba(0,0,0,0.6);
+}
+
+.thread-list-section h2 {
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.thread-li {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 0px;
+}

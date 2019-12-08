@@ -43,11 +43,11 @@ class ViewThreadPage extends Component {
           this.refreshPosts();
         })
         .catch(e => {
-          this.setState({postErrorMessage: e.error})
+          this.setState({ postErrorMessage: e.error })
         })
     }
     else {
-      this.setState({postErrorMessage: "Please log in to post"});
+      this.setState({ postErrorMessage: "Please log in to post" });
     }
   }
 
@@ -119,19 +119,18 @@ class ViewThreadPage extends Component {
     }
 
     return (
-      <>
-        <header>
-          <h1>{this.state.threadName}</h1>
-        </header>
+      <section className="view-thread-page">
 
-        <section>
+        <div>
+          <h2>{this.state.threadName}</h2>
+
           {content}
-        </section>
+        </div>
 
         {!this.state.loaded ? false :
-          <section>
+          <div>
 
-            <h2>Reply to Thread</h2>
+            <h3>Reply to Thread</h3>
 
             <form onSubmit={this.handleSubmitPostForm}>
               <div className="form-error">{this.state.postErrorMessage}</div>
@@ -143,9 +142,9 @@ class ViewThreadPage extends Component {
               <input type="submit" value="Reply" />
             </form>
 
-          </section>
+          </div>
         }
-      </>
+      </section>
     );
   }
 }

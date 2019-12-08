@@ -80,7 +80,6 @@ class ThreadListPage extends Component {
     else { // loaded
       content = (
         <>
-          <h2>Threads</h2>
           <Link to={`/boards/${this.props.match.params.boardName}/create_thread`}>Create Thread</Link>
           <ul className="thread-list">{threads}</ul>
         </>
@@ -88,17 +87,12 @@ class ThreadListPage extends Component {
     }
 
     return (
-      <>
-        <header>
-          <h1>{this.state.boardName}</h1>
-        </header>
+      <section className="thread-list-section">
+        <h2>{this.state.boardName}</h2>
 
-        <section>
+        {content}
 
-          {content}
-
-        </section>
-      </>
+      </section>
     );
   }
 }

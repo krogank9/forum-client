@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 class Board extends Component {
   render() {
     return (
-      <li>
+      <li className="board-li">
         <div>
-          <Link to={`/boards/${this.props.name.toLowerCase()}.${this.props.boardId}`}>{this.props.name}</Link>
+          <Link to={`/boards/${this.props.name.toLowerCase()}.${this.props.boardId}`} className="title-link">{this.props.name}</Link>
         </div>
         <div>
           <small>Discussions: {this.props.threadCount}</small>

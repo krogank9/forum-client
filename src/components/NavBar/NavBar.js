@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './NavBar.css';
+
 import ForumContext from '../../contexts/ForumContext.js';
 import TokenService from '../../services/token-service'
 
@@ -25,15 +27,30 @@ class NavBar extends React.Component {
       <ForumContext.Consumer>
         {({ loggedInUser }) => (
           <nav>
-            <Link to="/boards">View boards</Link>
-            <br />
-            {loggedInUser ?
-              <span>Logged in as {loggedInUser.userName} <Link to="#" onClick={this.logoutUser}>Logout</Link> </span>
-              :
-              <>
-                <Link to="/login">Log In</Link> / <Link to="/create-account">Create Account</Link>
-              </>
-            }
+            <div>
+              <Link to="/">
+                <img className="nav-logo" src={`${process.env.PUBLIC_URL}/assets/logo_small.svg`} alt="Home"></img>
+              </Link>
+            </div>
+            <div className="nav-expand"></div>
+            <div>
+              <span className="nav-button-padding-right-md">
+                <Link to="/boards">View boards</Link>
+              </span>
+
+              {loggedInUser ?
+                <span>Logged in as {loggedInUser.userName} <Link to="#" onClick={this.logoutUser} className="nav-button-light">Logout</Link> </span>
+                :
+                <>
+                  <span>
+                    <Link to="/login" className="nav-button-light">Log In</Link>
+                  </span>
+                  <span>
+                    <Link to="/create-account" className="nav-button">Create Account</Link>
+                  </span>
+                </>
+              }
+            </div>
           </nav>
         )}
       </ForumContext.Consumer>

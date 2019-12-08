@@ -24,6 +24,7 @@ class ThreadListPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match)
     let boardId = this.props.match.params.boardName.split(".").pop();
 
     ForumApiService.getBoardById(parseInt(boardId))

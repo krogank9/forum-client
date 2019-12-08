@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-//
-import bbobReactRender from '@bbob/react/es/render'
-import { createPreset } from '@bbob/preset'
-
-// render: <p><strong>strong</strong></p>
 
 import Utils from "../../../utils";
+
+import parser, { Tag } from 'bbcode-to-react';
+
+class QuoteTag extends Tag {
+  toReact() {
+    // using this.getContent(true) to get it's inner raw text.
+    const attributes = {
+      ...this.params,
+      content: this.getContent(true)
+    };
+    return (
+      <div className="post-quote">
+        <div className="post-quote-header">
+          <span>{`${attributes["name"]} said:`}</span>
+          <a href={`#${attributes["postNumber"]}`}>{"↑"}</a>
+        </div>
+        <div className="post-quote-body">
+          {attributes.content}
+        </div>
+      </div>
+    );
+  }
+}
+
+parser.registerTag('quote', QuoteTag);
+
+/*
+//import bbobReactRender from '@bbob/react/es/render'
+//import { createPreset } from '@bbob/preset'
+
+// render: <p><strong>strong</strong></p>
 
 const preset = createPreset({
   quote: (node) => {
@@ -39,8 +65,10 @@ const preset = createPreset({
     })
   },
 })
+*/
 
 class Post extends Component {
+
   replyClicked = () => {
     this.props.onReply({
       author: this.props.user,
@@ -71,7 +99,7 @@ class Post extends Component {
               </span>
             </div>
             <div className="forum-post-text">
-              {bbobReactRender(this.props.content, preset(), {})}
+              {parser.toReact(this.props.content || "")}
             </div>
             <div className="forum-post-footer">
               <Link to="#" onClick={this.replyClicked}>Reply</Link>

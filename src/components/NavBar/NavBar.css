@@ -28,14 +28,14 @@
   flex: 1;
 }
 
-.nav-button {
+.nav-header .nav-button {
   background-color: #0079D3;
   border-radius: 4px;
   color: white;
   padding: 7px 20px;
   white-space: nowrap;
 }
-.nav-button:hover {
+.nav-header .nav-button:hover {
   background-color: #7FBCE9;
   color: white;
 }

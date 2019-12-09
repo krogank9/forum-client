@@ -6,6 +6,12 @@ This is a full stack discussion/message board app. You can create an account, lo
 
 https://forum-client.now.sh/
 
+## API Documentation:
+
+See the server repo:
+
+https://github.com/krogank9/forum-server
+
 ## Screenshots:
 
 ![recommendations](screenshot/landing-page.PNG)

@@ -16,21 +16,19 @@ class ProfilePictureChooser extends Component {
     }
   }
 
+  // Choose from 1 or 9 standard profile pictures by cycling through w/ left & right buttons.
   changeProPic = (evt) => {
-    let name = evt.target.getAttribute("name")
-
     evt.preventDefault()
 
     let add = evt.target.name === "prev" ? -1 : 1
     let newNum = this.state.picNumber + add
+
     if(newNum > 9) {
       newNum = 1
     }
     else if(newNum < 1) {
       newNum = 9
     }
-
-    console.log(`add: ${add}, newNum: ${newNum}`)
 
     const newState = {
       picNumber: newNum,

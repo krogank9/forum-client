@@ -54,8 +54,7 @@ class MakeThreadPage extends Component {
           <br />
           <input type="text" name="subject" required />
 
-          <br />
-          <br />
+          <br /><br />
 
           <span>Content:</span>
           <br />

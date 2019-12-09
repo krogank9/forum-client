@@ -28,8 +28,6 @@ class BoardListPage extends Component {
   }
 
   render() {
-    let boards = this.state.boards.map((b, i) => <Board name={b.name} threadCount={b.threadCount} boardId={b.id} key={i} />)
-
     let content = false
     if(this.state.error) {
       content = <div>Could not load boards. Please try again later.</div>
@@ -38,6 +36,7 @@ class BoardListPage extends Component {
       content = <div>Loading...</div>
     }
     else { // loaded
+      let boards = this.state.boards.map((b, i) => <Board name={b.name} threadCount={b.threadCount} boardId={b.id} key={i} />)
       content = <ul className="board-list">{boards}</ul>
     }
 

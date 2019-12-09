@@ -1,3 +1,4 @@
+import React from 'react';
 // moment js for better date parsing browser compatibility
 const moment = require('moment');
 
@@ -34,18 +35,58 @@ export default {
       return date.toLocaleString(navigator.language, { month: 'short', day: 'numeric', year: 'numeric' })
     }
   },
-  updateBoardURL: (historyProp,boardName,boardId) => {
+  updateBoardURL: (historyProp, boardName, boardId) => {
     const newLocation = `/boards/${boardName}.${boardId}`
-    if(newLocation !== window.location.pathname) {
+    if (newLocation !== window.location.pathname) {
       //window.location = newLocation
       historyProp.push(newLocation)
     }
   },
-  setThreadURL: (historyProp,threadName,threadId) => {
+  setThreadURL: (historyProp, threadName, threadId) => {
     const newLocation = `/threads/${threadName}.${threadId}`
-    if(newLocation !== window.location.pathname) {
+    if (newLocation !== window.location.pathname) {
       //window.location = newLocation
       historyProp.push(newLocation)
     }
+  },
+  bbcodeToReact: (txt) => {
+
+    let quoteHTML = (
+      `<div class="post-quote">
+        <div class="post-quote-header">
+          <span>$1 said:</span>
+          <a href="#$2">↑</a>
+        </div>
+        <div class="post-quote-body">
+          $3
+        </div>
+      </div>`
+    );
+
+    // nested bbcode tag regex replace works b/c of greediness
+
+    while (true) {
+      let newTxt = txt.replace(/\[b\](.+?)\[\/b\]/s, '<b>$1</b>')
+
+      if (txt === newTxt)
+        break
+      else
+        txt = newTxt
+    }
+
+    while (true) {
+      let newTxt = txt.replace(/\[QUOTE name=(.*?) postNumber=(.*?)\](.*?)\[\/QUOTE\]/s, quoteHTML)
+
+      if (txt === newTxt) {
+        console.log("newTxt", newTxt)
+        break
+      }
+      else {
+        txt = newTxt
+        console.log("txt", txt)
+      }
+    }
+
+    return txt
   }
 }

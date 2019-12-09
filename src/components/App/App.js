@@ -39,7 +39,7 @@ class App extends React.Component {
 
   tryRefreshLogin = () => {
     let authToken = TokenService.getAuthToken();
-    console.log(authToken)
+
     if(authToken && authToken.length > 0) {
       ForumApiService.refresh(authToken).then(json => {
         this.onUserLoggedIn(json.authToken, json.userName, json.userId)
@@ -48,6 +48,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // Try to refresh the JWT token & log in on page load
     this.tryRefreshLogin();
   }
 

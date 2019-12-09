@@ -8,8 +8,8 @@ https://forum-client.now.sh/
 
 ## Screenshots:
 
-![recommendations](screenshot/landing-page.png)
-![recommendations](screenshot/thread-page.png)
+![recommendations](screenshot/landing-page.PNG)
+![recommendations](screenshot/thread-page.PNG)
 
 ## Built With:
 

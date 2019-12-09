@@ -21,7 +21,7 @@ class Post extends Component {
         </div>
         <div className="forum-post-container">
           <div className="forum-post-user">
-            <img src={`${process.env.PUBLIC_URL}/assets/profile-pictures/${proPic}.svg`} />
+            <img src={`${process.env.PUBLIC_URL}/assets/profile-pictures/${proPic}.svg`} alt={`Avatar ${proPic}`} />
             <div>
               {this.props.user}
             </div>
@@ -30,7 +30,7 @@ class Post extends Component {
             <div className="forum-post-header">
               Date Posted: {Utils.dateToHumanReadable(this.props.datePosted)}
               <span className="forum-post-num">
-                <a name={`${this.props.postNum}`}>#{this.props.postNum}</a>
+                <a name={`${this.props.postNum}`} href={`#${this.props.postNum}`}>#{this.props.postNum}</a>
               </span>
             </div>
             <div className="forum-post-text" dangerouslySetInnerHTML={{ __html: Utils.bbcodeToReact(this.props.content || "") }}>

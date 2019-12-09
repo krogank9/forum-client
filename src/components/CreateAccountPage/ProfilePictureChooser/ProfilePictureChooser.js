@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 
-import ForumApiService from '../../../services/forum-api-service';
 import ForumContext from '../../../contexts/ForumContext';
 
 class ProfilePictureChooser extends Component {
@@ -45,7 +44,7 @@ class ProfilePictureChooser extends Component {
   render() {
     return (
       <div>
-        <img src={this.state.curPic}></img>
+        <img src={this.state.curPic} alt="Avatar"></img>
         <div>
           <Link name="prev" to="#" onClick={this.changeProPic} className="title-link-light">&lt; Prev</Link>
           &nbsp;/&nbsp;

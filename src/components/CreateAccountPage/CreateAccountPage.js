@@ -25,11 +25,8 @@ class CreateAccountPage extends Component {
 
     ForumApiService.registerUser(this.state.userName, this.state.password, this.state.profilePicture)
       .then(json => {
-        console.log(json)
-        //alert("Account created successfuly")
         ForumApiService.login(this.state.userName, this.state.password)
           .then(json => {
-            console.log(json)
             this.context.onUserLoggedIn(json.authToken, json.userName, json.userId)
             this.props.history.goBack()
           })

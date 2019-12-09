@@ -86,7 +86,6 @@ class ViewThreadPage extends Component {
         this.refreshPosts();
       })
       .catch(e => {
-        console.log(e)
         const notFound = e.error && e.error.message.indexOf("doesn't exist") >= 0;
         this.setState({ notFoundError: notFound, fetchError: !notFound });
       })

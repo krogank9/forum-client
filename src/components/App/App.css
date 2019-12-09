@@ -29,11 +29,13 @@ section {
   text-decoration: none;
   font-weight: bold;
 }
+
 .title-link-light {
   color: #004D97;
   text-decoration: none;
   font-weight: 500;
 }
+
 .title-link-light:hover, .title-link:hover  {
   color: #004D97;
   text-decoration: underline;

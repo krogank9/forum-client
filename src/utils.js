@@ -1,4 +1,3 @@
-import React from 'react';
 // moment js for better date parsing browser compatibility
 const moment = require('moment');
 
@@ -38,14 +37,12 @@ export default {
   updateBoardURL: (historyProp, boardName, boardId) => {
     const newLocation = `/boards/${boardName}.${boardId}`
     if (newLocation !== window.location.pathname) {
-      //window.location = newLocation
       historyProp.push(newLocation)
     }
   },
   setThreadURL: (historyProp, threadName, threadId) => {
     const newLocation = `/threads/${threadName}.${threadId}`
     if (newLocation !== window.location.pathname) {
-      //window.location = newLocation
       historyProp.push(newLocation)
     }
   },
@@ -63,10 +60,10 @@ export default {
       </div>`
     );
 
-    // nested bbcode tag regex replace works b/c of greediness
+    // nested bbcode tag regex replace works because of greediness
 
     while (true) {
-      let newTxt = txt.replace(/\[b\](.+?)\[\/b\]/s, '<b>$1</b>')
+      let newTxt = txt.replace(/\[B\](.+?)\[\/B\]/s, '<b>$1</b>')
 
       if (txt === newTxt)
         break
@@ -78,12 +75,10 @@ export default {
       let newTxt = txt.replace(/\[QUOTE name=(.*?) postNumber=(.*?)\](.*?)\[\/QUOTE\]/s, quoteHTML)
 
       if (txt === newTxt) {
-        console.log("newTxt", newTxt)
         break
       }
       else {
         txt = newTxt
-        console.log("txt", txt)
       }
     }
 

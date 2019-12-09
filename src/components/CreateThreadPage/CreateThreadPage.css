@@ -10,6 +10,7 @@
 .create-thread-form input[type=text] {
   width: 85%;
 }
+
 .create-thread-form textarea {
   width: 85%;
   height: 200px;

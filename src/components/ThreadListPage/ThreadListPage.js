@@ -24,7 +24,6 @@ class ThreadListPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match)
     let boardId = this.props.match.params.boardName.split(".").pop();
 
     ForumApiService.getBoardById(parseInt(boardId))
@@ -47,14 +46,6 @@ class ThreadListPage extends Component {
   }
 
   render() {
-    let threads_old = [
-      ["This is my first thread, what's up guys?", "Logan", "11/17/2019 4PM", 35, 123],
-      ["Sports thread, this thread is about sports", "Sam", "11/15/2019 5PM", 26, 55],
-      ["Programming general - discuss programming here", "Maggie", "11/17/2019 4PM", 22, 79],
-      ["Health and Fitness Thread", "Logan", "11/18/2019 1PM", 15, 54],
-      ["This thread is about the weather", "Logan", "11/22/2019 11AM", 29, 42],
-    ].map((t, i) => <Thread name={t[0]} user={t[1]} date={t[2]} replies={t[3]} views={t[4]} match={this.props.match} key={i} />)
-
     let threads = this.state.threads.map((t, i) => (
       <Thread
         name={t.name}

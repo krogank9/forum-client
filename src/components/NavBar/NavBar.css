@@ -68,7 +68,7 @@
   width: auto;
 }
 
-/*----*/
+/*-- mobile only --*/
 
 .nav-dropdown-menu {
   background-color: white;
@@ -80,7 +80,6 @@
   background: #eee;
 }
 
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 600px) {
   .nav-header .nav-desktop-only { display: none; }
 }

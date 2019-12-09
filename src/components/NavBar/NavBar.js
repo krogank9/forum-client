@@ -3,7 +3,6 @@ import React from 'react';
 import './NavBar.css';
 
 import ForumContext from '../../contexts/ForumContext.js';
-import TokenService from '../../services/token-service'
 
 import { Link } from "react-router-dom";
 
@@ -32,7 +31,7 @@ class NavBar extends React.Component {
 
               <div>
                 <Link to="/" className="nav-log-link">
-                  <img className="nav-logo" src={`${process.env.PUBLIC_URL}/assets/logo_small.svg`} alt="Home"></img>
+                  <img className="nav-logo" src={`${process.env.PUBLIC_URL}/assets/logo_small.svg`} alt="Logan's Forum App"></img>
                 </Link>
               </div>
 
@@ -58,7 +57,7 @@ class NavBar extends React.Component {
 
                 <span className="nav-dropdown-button">
                   <Link to="#" onClick={() => { this.setState({ showDropdown: !this.state.showDropdown }) }}>
-                    <img src={`${process.env.PUBLIC_URL}/assets/menu-icon.svg`} className="menu-icon"></img>
+                    <img src={`${process.env.PUBLIC_URL}/assets/menu-icon.svg`} className="menu-icon" alt="Navigation Menu"></img>
                   </Link>
                 </span>
               </div>

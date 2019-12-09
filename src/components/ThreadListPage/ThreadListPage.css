@@ -1,3 +1,14 @@
+.thread-list-section {
+  margin: 14px;
+  padding: 20px;
+  box-shadow: 1px 1px 14px rgba(0,0,0,0.6);
+}
+
+.thread-list-section h2 {
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
 .thread-list {
   padding-left: 0;
   list-style: none;
@@ -12,8 +23,11 @@
 .forum-thread-info {
   background-color: #ffffff;
 }
-.thread-list li {
+
+.thread-li {
   margin-bottom: 2px;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 0px;
 }
 
 .forum-thread-info > span {
@@ -22,7 +36,7 @@
 }
 
 /* Landscape */
-@media screen and (orientation:landscape) {
+@media screen and (min-width: 600px) {
   .forum-thread-info > span {
     display: block;
   }
@@ -46,22 +60,4 @@
     background-color: #eeeeee;
     width: 150px;
   }
-}
-
-/*----*/
-
-.thread-list-section {
-  margin: 14px;
-  padding: 20px;
-  box-shadow: 1px 1px 14px rgba(0,0,0,0.6);
-}
-
-.thread-list-section h2 {
-  text-align: left;
-  border-bottom: 1px solid #333;
-}
-
-.thread-li {
-  border-bottom: 1px solid #e0e0e0;
-  padding: 8px 0px;
 }
